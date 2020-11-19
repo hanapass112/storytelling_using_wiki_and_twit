@@ -118,10 +118,15 @@ now = datetime.datetime.now()
 today = now.strftime('%Y%m%d')
 
 
+import json
+with open('./config.json', 'rb') as f:
+    config = json.loads(f.read().decode())
+
+
 
 
 # start_key = 'Donald Trump'
-start_key = 'Covid19'
+start_key = config.get('start_keyword')
 talker = Talker(interval, TOO_MUCH_STORIES)
 talker.talking(start_key, num_of_stories)                       # thread로 만들수도
 
